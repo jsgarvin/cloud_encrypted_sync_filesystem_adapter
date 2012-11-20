@@ -1,6 +1,6 @@
 module CloudEncryptedSync
   module Adapters
-    class Filesystem < Template
+    class Foundation < Template
 
     end
   end

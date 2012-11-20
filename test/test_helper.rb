@@ -7,9 +7,9 @@ require 'test/unit'
 SimpleCov.start
 
 require 'cloud_encrypted_sync'
-require 'cloud_encrypted_sync_filesystem_adapter'
+require 'cloud_encrypted_sync_foundation_adapter'
 
-module CloudEncryptedSyncFilesystemAdapter
+module CloudEncryptedSyncFoundationAdapter
   class ActiveSupport::TestCase
 
   end

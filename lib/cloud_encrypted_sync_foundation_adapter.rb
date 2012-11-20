@@ -1,0 +1,1 @@
+require File.expand_path('../foundation/adapter', __FILE__)

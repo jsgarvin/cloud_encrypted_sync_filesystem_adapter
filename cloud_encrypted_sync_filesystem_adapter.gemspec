@@ -1,14 +1,14 @@
-require File.expand_path('../lib/cloud_encrypted_sync_filesystem_adapter/version', __FILE__)
+require File.expand_path('../lib/foundation/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name = "cloud_encrypted_sync_filesystem_adapter"
-  s.version = CloudEncryptedSyncFilesystemAdapter::VERSION
+  s.name = "cloud_encrypted_sync_foundation_adapter"
+  s.version = CloudEncryptedSyncFoundationAdapter::VERSION
   s.platform = Gem::Platform::RUBY
-  s.authors = ["Jonathan S. Garvin"]
-  s.email = ["jon@5valleys.com"]
-  s.homepage = "https://github.com/jsgarvin/cloud_encrypted_sync_filesystem_adapter"
-  s.summary = %q{Plugin adapter for CloudEncryptedSync gem that stores encrypted backups to the local filesystem.}
-  s.description = %q{Plugin adapter for CloudEncryptedSync gem that provides stores to the local filesystem.}
+  s.authors = ["**YOUR NAME**"]
+  s.email = ["**YOUR EMAIL**"]
+  s.homepage = "https://github.com/**YOU**/cloud_encrypted_sync_foundation_adapter"
+  s.summary = %q{Foundation adapter plugin for CloudEncryptedSync gem.}
+  s.description = %q{Foundation adapter plugin for CloudEncryptedSync gem.}
 
   s.add_dependency('cloud_encrypted_sync', '~> 0.1.2')
 
