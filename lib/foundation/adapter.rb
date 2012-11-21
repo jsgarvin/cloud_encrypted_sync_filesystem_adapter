@@ -6,7 +6,6 @@ module CloudEncryptedSync
       # and the user identified this adapter with the --adapter argument.
       #
       # It should accept an instance of OptionParser as it's argument.
-      # It should not return any values.
       #
       # Do not call parse! on the passed option parser. CES will do that.
       def parse_command_line_options(parser)
@@ -16,7 +15,7 @@ module CloudEncryptedSync
       # CES will call this method when there is data to write.
       #
       # It should accept data to write and a key that will be used to
-      # retreive the data later
+      # retreive the data later.
       def write(data, key)
         raise Errors::TemplateMethodCalled.new('write')
       end
@@ -25,7 +24,7 @@ module CloudEncryptedSync
       #
       # It should accept a key as an argument and return the data
       # associated with that key on a previous write.
-      # It should raise an Errors::NoSuckKey execption if the
+      # It should raise an Errors::NoSuchKey exception if the
       # key does not exist.
       def read(key)
         raise Errors::TemplateMethodCalled.new('read')
