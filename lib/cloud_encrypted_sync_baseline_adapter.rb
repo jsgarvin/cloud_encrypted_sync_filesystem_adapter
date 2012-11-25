@@ -1,1 +1,0 @@
-require File.expand_path('../adapters/baseline', __FILE__)

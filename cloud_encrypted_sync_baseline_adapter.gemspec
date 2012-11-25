@@ -1,14 +1,14 @@
 require File.expand_path('../lib/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name = "cloud_encrypted_sync_baseline_adapter"
+  s.name = "cloud_encrypted_sync_filesystem_adapter"
   s.version = CloudEncryptedSyncBaselineAdapter::VERSION
   s.platform = Gem::Platform::RUBY
-  s.authors = ["**YOUR NAME**"]
-  s.email = ["**YOUR EMAIL**"]
-  s.homepage = "https://github.com/**YOU**/cloud_encrypted_sync_baseline_adapter"
-  s.summary = %q{Baseline adapter plugin for CloudEncryptedSync gem.}
-  s.description = %q{Baseline adapter plugin for CloudEncryptedSync gem.}
+  s.authors = ["Jonathan S. Garvin"]
+  s.email = ["jon@5valleys.com"]
+  s.homepage = "https://github.com/jsgarvin/cloud_encrypted_sync_filesystem_adapter"
+  s.summary = %q{Filesystem adapter plugin for CloudEncryptedSync gem.}
+  s.description = %q{Filesystem adapter plugin for CloudEncryptedSync gem.}
 
   s.add_dependency('cloud_encrypted_sync')
 
