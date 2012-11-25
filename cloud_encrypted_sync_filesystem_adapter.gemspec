@@ -1,16 +1,16 @@
-require File.expand_path('../lib/foundation/version', __FILE__)
+require File.expand_path('../lib/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name = "cloud_encrypted_sync_foundation_adapter"
-  s.version = CloudEncryptedSyncFoundationAdapter::VERSION
+  s.name = "cloud_encrypted_sync_baseline_adapter"
+  s.version = CloudEncryptedSyncBaselineAdapter::VERSION
   s.platform = Gem::Platform::RUBY
   s.authors = ["**YOUR NAME**"]
   s.email = ["**YOUR EMAIL**"]
-  s.homepage = "https://github.com/**YOU**/cloud_encrypted_sync_foundation_adapter"
-  s.summary = %q{Foundation adapter plugin for CloudEncryptedSync gem.}
-  s.description = %q{Foundation adapter plugin for CloudEncryptedSync gem.}
+  s.homepage = "https://github.com/**YOU**/cloud_encrypted_sync_baseline_adapter"
+  s.summary = %q{Baseline adapter plugin for CloudEncryptedSync gem.}
+  s.description = %q{Baseline adapter plugin for CloudEncryptedSync gem.}
 
-  s.add_dependency('cloud_encrypted_sync', '~> 0.1.2')
+  s.add_dependency('cloud_encrypted_sync')
 
   s.add_development_dependency('rake')
   s.add_development_dependency('mocha')

@@ -1,6 +1,6 @@
 module CloudEncryptedSync
   module Adapters
-    class Foundation < Template
+    class Baseline < Template
 
       # CES will call this method when it parses the command line options
       # and the user identified this adapter with the --adapter argument.
