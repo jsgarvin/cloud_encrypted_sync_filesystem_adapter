@@ -2,7 +2,7 @@ require File.expand_path('../lib/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name = "cloud_encrypted_sync_filesystem_adapter"
-  s.version = CloudEncryptedSyncBaselineAdapter::VERSION
+  s.version = CloudEncryptedSyncFilesystemAdapter::VERSION
   s.platform = Gem::Platform::RUBY
   s.authors = ["Jonathan S. Garvin"]
   s.email = ["jon@5valleys.com"]
