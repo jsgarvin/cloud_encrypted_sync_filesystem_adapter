@@ -1,6 +1,6 @@
 require 'test_helper'
 
-module CloudEncryptedSyncBaselineAdapter
+module CloudEncryptedSyncFilesystemAdapter
   class AdapterTest < ActiveSupport::TestCase
 
     def setup
@@ -15,20 +15,15 @@ module CloudEncryptedSyncBaselineAdapter
     test 'should parse command line options' do
       unstub_configuration
       Object.send(:remove_const,:ARGV)
-      ::ARGV = '--foo bar'.split(/\s/)
+      ::ARGV = '--destination-path /some/path'.split(/\s/)
       @option_parser = OptionParser.new do |parser|
         adapter.parse_command_line_options(parser)
       end
       @option_parser.parse!
-      assert_equal('bar',CloudEncryptedSync::Adapters::Baseline.instance.send(:foo))
+      assert_equal('/some/path',CloudEncryptedSync::Adapters::Filesystem.instance.send(:destination_path))
       stub_configuration #just so that teardown unstub doesn't throw errors
     end
 
-    # Suggestion:
-    # Replace number_of_files_in_destination with your own method that
-    # returns an integer representiong the total number of files that
-    # should be stored in the target cloud.  Otherwise, re-write this
-    # entire test as you see fit to best evaluate your adapter code.
     test 'should write readable data to cloud and then delete it' do
 
       test_data = 'testdata'
@@ -60,17 +55,17 @@ module CloudEncryptedSyncBaselineAdapter
     #######
 
     def adapter
-      CloudEncryptedSync::Adapters::Baseline
+      CloudEncryptedSync::Adapters::Filesystem
     end
 
     # Setup test configuration values here as if they were passed in as command line arguments
     def stub_configuration
-      CloudEncryptedSync::Adapters::Baseline.any_instance.stubs(:foo).returns('bar')
+      CloudEncryptedSync::Adapters::Filesystem.any_instance.stubs(:destination_path).returns('/some/path')
     end
 
     # Remove stubbed settings here that were stubbed in above method.
     def unstub_configuration
-      CloudEncryptedSync::Adapters::Baseline.any_instance.unstub(:foobar)
+      CloudEncryptedSync::Adapters::Filesystem.any_instance.unstub(:destination_path)
     end
   end
 end

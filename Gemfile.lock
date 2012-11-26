@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cloud_encrypted_sync_baseline_adapter (0.1.0)
+    cloud_encrypted_sync_filesystem_adapter (0.1.0)
       cloud_encrypted_sync
 
 GEM
@@ -27,7 +27,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
-  cloud_encrypted_sync_baseline_adapter!
+  cloud_encrypted_sync_filesystem_adapter!
   mocha
   rake
   simplecov
