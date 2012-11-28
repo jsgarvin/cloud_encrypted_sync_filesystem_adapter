@@ -31,14 +31,14 @@ module CloudEncryptedSyncFilesystemAdapter
 
       assert !adapter.key_exists?(test_key)
 
-      assert_difference('adapter.instance.number_of_files_in_destination') do
+      assert_difference('number_of_files_in_storage') do
         adapter.write(test_data,test_key)
       end
       assert adapter.key_exists?(test_key)
 
       assert_equal(test_data,adapter.read(test_key))
 
-      assert_difference('adapter.instance.number_of_files_in_destination',-1) do
+      assert_difference('number_of_files_in_storage',-1) do
         adapter.delete(test_key)
       end
       assert !adapter.key_exists?(test_key)
@@ -56,13 +56,34 @@ module CloudEncryptedSyncFilesystemAdapter
 
     test 'should return true to existent keys' do
       key = 'foobar'
-      File.open(adapter.send(:storage_path_to,key),'w') { |file| file.write('Hello, World!') }
+      File.open(storage_path_to(key),'w') { |file| file.write('Hello, World!') }
+      assert adapter.key_exists?(key)
+    end
+
+    test 'should write to storage' do
+      key = 'foobar'
+      refute adapter.key_exists?(key)
+      assert_difference('number_of_files_in_storage') do
+        adapter.write('this is my handle, this is my spout',key)
+      end
       assert adapter.key_exists?(key)
     end
 
     #######
     private
     #######
+
+    def number_of_files_in_storage
+      Dir["#{full_storage_path}/*"].length
+    end
+
+    def storage_path_to(key)
+      adapter.send(:storage_path_to,key)
+    end
+
+    def full_storage_path
+      adapter.send(:expanded_storage_path)
+    end
 
     def adapter
       CloudEncryptedSync::Adapters::Filesystem.instance

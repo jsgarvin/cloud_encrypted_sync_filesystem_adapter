@@ -14,7 +14,7 @@ module CloudEncryptedSync
       # It should accept data to write and a key that will be used to
       # retreive the data later.
       def write(data, key)
-        raise Errors::TemplateMethodCalled.new('write')
+        File.open(storage_path_to(key),'w') { |file| file.write(data) }
       end
 
       # CES will call this method to fetch data.
@@ -35,11 +35,6 @@ module CloudEncryptedSync
         raise Errors::TemplateMethodCalled.new('delete')
       end
 
-      # CES will call this method to check for the existance
-      # of a key.
-      #
-      # It should accept a key as an argument and return a
-      # boolean.
       def key_exists?(key)
         File.exist?(storage_path_to(key))
       end
