@@ -60,7 +60,7 @@ module CloudEncryptedSyncFilesystemAdapter
 
     # Setup test configuration values here as if they were passed in as command line arguments
     def stub_configuration
-      CloudEncryptedSync::Adapters::Filesystem.any_instance.stubs(:storage_path).returns('/some/path')
+      CloudEncryptedSync::Adapters::Filesystem.any_instance.stubs(:storage_path).returns(File.expand_path('../test_storage_folder',  __FILE__))
     end
 
     # Remove stubbed settings here that were stubbed in above method.
