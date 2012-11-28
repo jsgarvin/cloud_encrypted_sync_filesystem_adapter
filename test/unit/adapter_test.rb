@@ -69,6 +69,13 @@ module CloudEncryptedSyncFilesystemAdapter
       assert adapter.key_exists?(key)
     end
 
+    test 'should read file from storage' do
+      key = 'foobar'
+      data = 'Hello, World!'
+      File.open(storage_path_to(key),'w') { |file| file.write(data) }
+      assert_equal(data,adapter.read(key))
+    end
+
     #######
     private
     #######

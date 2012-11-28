@@ -9,22 +9,16 @@ module CloudEncryptedSync
         end
       end
 
-      # CES will call this method when there is data to write.
-      #
-      # It should accept data to write and a key that will be used to
-      # retreive the data later.
       def write(data, key)
         File.open(storage_path_to(key),'w') { |file| file.write(data) }
       end
 
-      # CES will call this method to fetch data.
-      #
-      # It should accept a key as an argument and return the data
-      # associated with that key on a previous write.
-      # It should raise an Errors::NoSuchKey exception if the
-      # key does not exist.
       def read(key)
-        raise Errors::TemplateMethodCalled.new('read')
+        if key_exists?(key)
+          File.read(storage_path_to(key))
+        else
+          raise Errors::NoSuchKey.new(key)
+        end
       end
 
       # CES will call this method to delete the data.
