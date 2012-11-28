@@ -76,6 +76,15 @@ module CloudEncryptedSyncFilesystemAdapter
       assert_equal(data,adapter.read(key))
     end
 
+    test 'should delete file from storage' do
+      key = 'foobar'
+      data = 'Hello, World!'
+      File.open(storage_path_to(key),'w') { |file| file.write(data) }
+      assert_difference('number_of_files_in_storage',-1) do
+        adapter.delete(key)
+      end
+    end
+
     #######
     private
     #######

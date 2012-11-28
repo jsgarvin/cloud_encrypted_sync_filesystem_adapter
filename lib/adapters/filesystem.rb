@@ -21,12 +21,12 @@ module CloudEncryptedSync
         end
       end
 
-      # CES will call this method to delete the data.
-      #
-      # It should accept a key as an argument and delete the
-      # data associated with that key on a previous write.
       def delete(key)
-        raise Errors::TemplateMethodCalled.new('delete')
+        if key_exists?(key)
+          File.delete(storage_path_to(key))
+        else
+          raise Errors::NoSuchKey.new(key)
+        end
       end
 
       def key_exists?(key)
