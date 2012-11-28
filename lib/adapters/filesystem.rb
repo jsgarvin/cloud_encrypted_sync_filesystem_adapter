@@ -41,7 +41,24 @@ module CloudEncryptedSync
       # It should accept a key as an argument and return a
       # boolean.
       def key_exists?(key)
-        raise Errors::TemplateMethodCalled.new('key_exists?')
+        File.exist?(storage_path_to(key))
+      end
+
+      #######
+      private
+      #######
+
+      def storage_path_to(key)
+        "#{expanded_and_created_storage_path}/#{key}"
+      end
+
+      def expanded_and_created_storage_path
+        FileUtils.mkdir_p(expanded_storage_path)
+        return expanded_storage_path
+      end
+
+      def expanded_storage_path
+        File.expand_path(storage_path)
       end
 
     end

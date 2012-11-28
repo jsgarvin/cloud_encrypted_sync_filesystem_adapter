@@ -50,12 +50,22 @@ module CloudEncryptedSyncFilesystemAdapter
       assert_raises(CloudEncryptedSync::Errors::NoSuchKey) { adapter.read('nonexistentkey') }
     end
 
+    test 'should return false for non existent keys' do
+      refute adapter.key_exists?('nonexistentkey')
+    end
+
+    test 'should return true to existent keys' do
+      key = 'foobar'
+      File.open(adapter.send(:storage_path_to,key),'w') { |file| file.write('Hello, World!') }
+      assert adapter.key_exists?(key)
+    end
+
     #######
     private
     #######
 
     def adapter
-      CloudEncryptedSync::Adapters::Filesystem
+      CloudEncryptedSync::Adapters::Filesystem.instance
     end
 
     # Setup test configuration values here as if they were passed in as command line arguments
