@@ -1,15 +1,12 @@
 module CloudEncryptedSync
   module Adapters
     class Filesystem < Template
+      attr_accessor :storage_path
 
-      # CES will call this method when it parses the command line options
-      # and the user identified this adapter with the --adapter argument.
-      #
-      # It should accept an instance of OptionParser as it's argument.
-      #
-      # Do not call parse! on the passed option parser. CES will do that.
       def parse_command_line_options(parser)
-        raise Errors::TemplateMethodCalled.new('parse_command_line_options')
+        parser.on('--storage-path PATH', 'Path to folder where encrypted files are/will be stored.') do |storage|
+          self.storage_path = storage
+        end
       end
 
       # CES will call this method when there is data to write.

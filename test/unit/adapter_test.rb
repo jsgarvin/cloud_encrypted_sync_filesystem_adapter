@@ -15,12 +15,12 @@ module CloudEncryptedSyncFilesystemAdapter
     test 'should parse command line options' do
       unstub_configuration
       Object.send(:remove_const,:ARGV)
-      ::ARGV = '--destination-path /some/path'.split(/\s/)
+      ::ARGV = '--storage-path /some/path'.split(/\s/)
       @option_parser = OptionParser.new do |parser|
         adapter.parse_command_line_options(parser)
       end
       @option_parser.parse!
-      assert_equal('/some/path',CloudEncryptedSync::Adapters::Filesystem.instance.send(:destination_path))
+      assert_equal('/some/path',CloudEncryptedSync::Adapters::Filesystem.instance.send(:storage_path))
       stub_configuration #just so that teardown unstub doesn't throw errors
     end
 
@@ -60,12 +60,12 @@ module CloudEncryptedSyncFilesystemAdapter
 
     # Setup test configuration values here as if they were passed in as command line arguments
     def stub_configuration
-      CloudEncryptedSync::Adapters::Filesystem.any_instance.stubs(:destination_path).returns('/some/path')
+      CloudEncryptedSync::Adapters::Filesystem.any_instance.stubs(:storage_path).returns('/some/path')
     end
 
     # Remove stubbed settings here that were stubbed in above method.
     def unstub_configuration
-      CloudEncryptedSync::Adapters::Filesystem.any_instance.unstub(:destination_path)
+      CloudEncryptedSync::Adapters::Filesystem.any_instance.unstub(:storage_path)
     end
   end
 end
